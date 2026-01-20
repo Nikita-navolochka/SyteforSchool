@@ -2,14 +2,14 @@
     <!-- Breadcrumb -->
     <div class="mb-8">
         <nav class="text-sm text-gray-600">
-            <a href="{% url 'main:index' %}" 
-               hx-get="{% url 'main:index' %}" 
+            <a href="{% url 'Main:index' %}" 
+               hx-get="{% url 'Main:index' %}" 
                hx-target="#main-content" 
                hx-push-url="true"
                class="hover:text-gray-900">HOME</a>
             <span class="mx-2">/</span>
-            <a href="{% url 'main:catalog' product.category.slug %}" 
-               hx-get="{% url 'main:catalog' product.category.slug %}" 
+            <a href="{% url 'Main:catalog' product.category.slug %}" 
+               hx-get="{% url 'Main:catalog' product.category.slug %}" 
                hx-target="#main-content" 
                hx-push-url="true"
                class="hover:text-gray-900">{{ product.category.name|upper }}</a>
@@ -35,7 +35,7 @@
             </div>
 
             <!-- Additional Images -->
-            {% if product.images.all %}
+            {% if product.images.all %}  <!-- может быть можно закоментировать -->
             <div class="grid grid-cols-3 gap-2">
                 {% for image in product.images.all %}
                 <div class="aspect-square overflow-hidden bg-gray-100 cursor-pointer hover:opacity-80">
@@ -55,27 +55,28 @@
                 <h1 class="text-2xl sm:text-3xl font-bold tracking-tight text-gray-900 mb-2">
                     {{ product.name|upper }}
                 </h1>
-                <p class="text-lg text-gray-600 mb-4">{{ product.color|upper }}</p>
-                <p class="text-2xl font-bold text-gray-900">${{ product.price }}</p>
+                <p class="text-lg text-gray-600 mb-4">{{ product.author|upper }}</p>
+                <p class="text-2xl font-bold text-gray-900">${{ product.grade }}</p>
+                <p class="text-lg text-gray-600 mb-4">{{ product.link }}</p>
             </div>
 
             <!-- Sizes -->
-            {% if product.product_sizes.all %}
+            {% if product.part.all %}(product.part)
             <div>
-                <h3 class="text-sm font-medium text-gray-900 mb-3">SIZE</h3>
+                <h3 class="text-sm font-medium text-gray-900 mb-3">PART</h3>
                 <div class="grid grid-cols-4 gap-2">
-                    {% for product_size in product.product_sizes.all %}
-                    <div class="size-option">
+                    {% for part in product.part.all %}
+                    <div class="part-option">
                         <input type="radio" 
-                               name="size" 
-                               class="size-radio hidden"
-                               id="size-{{ product_size.id }}"
-                               value="{{ product_size.id }}"
-                               data-size="{{ product_size.size.name }}"
-                               {% if product_size.stock == 0 %}disabled{% endif %}
-                               {% if forloop.first and product_size.stock > 0 %}checked{% endif %}>
-                        <label for="size-{{ product_size.id }}"
-                               class="block border border-gray-300 py-2 px-3 text-sm font-medium text-center cursor-pointer hover:border-gray-900 transition-colors {% if product_size.stock == 0 %}opacity-50 cursor-not-allowed{% endif %}">
+                               name="part" 
+                               class="part-radio hidden"
+                               id="part-{{ part.id }}" <!--product_part-->
+                               value="{{ ppart.id }}"
+                               data-size="{{ part.part.name }}"
+                               {% if part.stock == 0 %}disabled{% endif %}
+                               {% if forloop.first and part.stock > 0 %}checked{% endif %}>
+                        <label for="size-{{ part.id }}"
+                               class="block border border-gray-300 py-2 px-3 text-sm font-medium text-center cursor-pointer hover:border-gray-900 transition-colors {% if part.stock == 0 %}opacity-50 cursor-not-allowed{% endif %}">
                             {{ product_size.size.name }}
                         </label>
                     </div>
@@ -84,8 +85,8 @@
             </div>
             {% else %}
             <div>
-                <h3 class="text-sm font-medium text-gray-900 mb-3">SIZE</h3>
-                <p class="text-sm text-gray-600">No sizes available</p>
+                <h3 class="text-sm font-medium text-gray-900 mb-3">PART</h3>
+                <p class="text-sm text-gray-600">No PART available</p>
             </div>
             {% endif %}
 

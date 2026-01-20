@@ -1,10 +1,11 @@
 from django.db import models
 from  django.utils.text import slugify
+from django.core.validators import URLValidator
 
 class Category(models.Model):
     name = models.CharField(max_length=100)
     slug = models.CharField(max_length=100, unique=True)
-
+   
 
     def save(self, *args, **kwargs):
         # Если slug пустой — генерируем уникальный slug на основе name
@@ -23,6 +24,8 @@ class Category(models.Model):
     def __str__(self):
         return self.name
     
+
+    
 # class Grade(models.Models): #
 #     name = models.CharField(max_length=10)
 
@@ -37,7 +40,7 @@ class Product(models.Model):
                                  related_name='products')
     author = models.CharField(max_length=200)
     description = models.TextField(blank=True)
-    link = models.CharField(max_length=300)
+    link = models.URLField(max_length=300)
     main_image = models.ImageField(upload_to='products/main/')
     grade = models.CharField(max_length=3)
     created_at = models.DateTimeField(auto_now_add=True)

@@ -18,7 +18,7 @@ class IndexView(TemplateView):
     def get(self, request, *args, **kwargs): #перегрузка
         context = self.get_context_data(**kwargs)
         if request.headers.get('HX-Request'):
-            return TemplateResponse(request, 'SETTINGS_APP/home_context.html', context)
+            return TemplateResponse(request, 'SETTINGS_app/home_context.html', context)
         return TemplateResponse(request, self.template_name, context)
 
 

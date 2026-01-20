@@ -10,3 +10,52 @@ statik
 
 
 поменять в base logo на main
+
+
+20.01.26 в product_detail_content строка 38 вожет быть можно закомитеть, тк не нужно статько фотографий
+так же строка 58 комит
+
+
+
+63 строка
+
+
+92 строка
+
+||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+
+
+есть мысля в models вот такую штуку закинуть, только в функциональном представлении from django.db import models
+import requests
+from django.core.exceptions import ValidationError
+
+class Resource(models.Model):
+    url = models.URLField(verbose_name="Ссылка")
+
+    def clean(self):
+        """Здесь происходит проверка данных перед сохранением"""
+        super().clean()
+        if self.url:  # Проверяем, если поле не пустое
+            try:
+                # На 2026 год использование allow_redirects=True желательно, 
+                # так как многие сайты используют редиректы
+                response = requests.head(self.url, timeout=5, allow_redirects=True)
+                if response.status_code >= 400:
+                    raise ValidationError({'url': f"Ссылка недоступна (код {response.status_code})"})
+            except requests.RequestException:
+                raise ValidationError({'url': "Не удалось соединиться с сервером."})
+
+    def save(self, *args, **kwargs):
+        # Чтобы clean() вызывался всегда, даже если вы создаете объект через код,
+        # а не через админку, вызываем full_clean вручную.
+        self.full_clean()
+        super().save(*args, **kwargs)
+
+
+
+
+|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+
+
+
+
