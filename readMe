@@ -59,3 +59,6 @@ class Resource(models.Model):
 
 
 
+22.01.2026
+
+filter_modal отредактировать под категорию

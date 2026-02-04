@@ -1,0 +1,63 @@
+<div class="p-6">
+    <div class="flex justify-between items-center mb-6">
+        <h2 class="text-xl font-bold tracking-tight text-gray-900 uppercase">Filters</h2>
+        <button class="text-gray-600 hover:text-gray-900"
+                onclick="document.getElementById('filter-modal').classList.add('hidden')">
+            ×
+        </button>
+    </div>
+
+    <form hx-get="{% if current_category %}{% url 'Main:catalog' current_category %}{% else %}{% url 'Main:catalog_all' %}{% endif %}" 
+          hx-target="#main-content" 
+          hx-push-url="true">
+        <input type="hidden" name="q" value="{{ filter_params.q|default:'' }}">
+        
+        <div class="space-y-6">
+            <!-- Color -->
+            <div>
+                <h3 class="text-sm font-medium text-gray-900 mb-3">author</h3>
+                <input type="text" 
+                       name="author" 
+                       value="{{ filter_params.author|default:'' }}" 
+                       class="w-full border border-gray-300 py-2 px-3 text-sm uppercase focus:outline-none focus:border-gray-900">
+            </div>
+
+           
+            <div>
+                <h3 class="text-sm font-medium text-gray-900 mb-3">part</h3>
+                <div class="grid grid-cols-2 gap-4">
+                    <input type="part" 
+                           name="part" 
+                           value="{{ filter_params.part|default:'' }}" 
+                           placeholder="part" 
+                           class="border border-gray-300 py-2 px-3 text-sm uppercase focus:outline-none focus:border-gray-900">
+                </div>
+            </div>
+        
+            <!-- Size -->
+              <div>
+                <h3 class="text-sm font-medium text-gray-900 mb-3">grade</h3>
+                <div class="grid grid-cols-2 gap-4">
+                    <input type="grade" 
+                           name="grade" 
+                           value="{{ filter_params.grade|default:'' }}" 
+                           placeholder="grade" 
+                           class="border border-gray-300 py-2 px-3 text-sm uppercase focus:outline-none focus:border-gray-900">
+                </div>
+            </div>
+
+            <!-- Form Actions -->
+            <div class="flex justify-between">
+                <button type="button" 
+                        class="border border-gray-300 py-2 px-4 text-sm font-medium uppercase hover:border-gray-900 transition-colors"
+                        onclick="document.getElementById('filter-modal').classList.add('hidden')">
+                    Cancel
+                </button>
+                <button type="submit" 
+                        class="bg-black text-white py-2 px-4 text-sm font-medium uppercase hover:bg-gray-800 transition-colors">
+                    Apply Filters
+                </button>
+            </div>
+        </div>
+    </form>
+</div>

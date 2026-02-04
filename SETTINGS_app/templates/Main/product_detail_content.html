@@ -56,8 +56,7 @@
                     {{ product.name|upper }}
                 </h1>
                 <p class="text-lg text-gray-600 mb-4">{{ product.author|upper }}</p>
-                <p class="text-2xl font-bold text-gray-900">${{ product.grade }}</p>
-                <p class="text-lg text-gray-600 mb-4">{{ product.link }}</p>
+                <p class="text-2xl font-bold text-gray-900">{{ product.grade }}</p>
             </div>
 
             <!-- Sizes -->
@@ -92,17 +91,19 @@
 
             <!-- Add to Cart -->
             <div class="space-y-4">
-                <button id="add-to-cart-btn" 
+                <a href = '{{ product.link }}'
+                target="_blank">
+                <button 
                         class="w-full bg-black text-white py-3 px-6 text-sm font-medium hover:bg-gray-800 transition-colors"
-                        onclick="addToCart()"
-                        {% if not product.product_sizes.all %}disabled{% endif %}>
-                    ADD TO CART
+                        >
+                    {{product.name}}
                 </button>
+            </a>
                 
-                <button class="w-full border border-gray-300 py-3 px-6 text-sm font-medium hover:border-gray-900 transition-colors">
+                <!--<button class="w-full border border-gray-300 py-3 px-6 text-sm font-medium hover:border-gray-900 transition-colors">
                     ADD TO WISHLIST
                 </button>
-            </div>
+            </div>-->
 
             <!-- Product Details -->
             <div class="border-t border-gray-200 pt-6">
@@ -113,13 +114,13 @@
                 </div>
             </div>
 
-            <!-- Care Instructions -->
+            <!-- Care Instructions 
             <div class="border-t border-gray-200 pt-6">
                 <h3 class="text-sm font-medium text-gray-900 mb-3">CARE</h3>
                 <div class="prose prose-sm text-gray-600">
                     <p>Professional dry clean only</p>
                     <p>Do not bleach</p>
-                    <p>Iron at low temperature</p>
+                    <p>Iron at low temperature</p>-->
                 </div>
             </div>
         </div>
@@ -132,11 +133,11 @@
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {% for related_product in related_products %}
             <div class="product-card group cursor-pointer" 
-                 hx-get="{% url 'main:product_detail' related_product.slug %}"
+                 hx-get="{% url 'Main:product_detail' related_product.slug %}"
                  hx-target="#main-content"
                  hx-push-url="true">
                 <div class="aspect-square overflow-hidden bg-gray-100 mb-4">
-                    {% if related_product.main_image %}
+                    {% if related_product.Main_image %}
                         <img src="{{ related_product.main_image.url }}" 
                              alt="{{ related_product.name }}" 
                              class="product-image w-full h-full object-cover">

@@ -7,7 +7,7 @@ from django.db.models import Q
 # Create your views here.
 
 class IndexView(TemplateView):
-    template_name = 'SETTINGS_app/base.html'
+    template_name = 'Main/base.html'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs) #это, я так понимаю, получение url 
@@ -18,14 +18,14 @@ class IndexView(TemplateView):
     def get(self, request, *args, **kwargs): #перегрузка
         context = self.get_context_data(**kwargs)
         if request.headers.get('HX-Request'):
-            return TemplateResponse(request, 'SETTINGS_app/home_context.html', context)
+            return TemplateResponse(request, 'Main/home_context.html', context)
         return TemplateResponse(request, self.template_name, context)
 
 
 #new request
 
 class CatalogView(TemplateView):
-    template_name = 'SETTINGS_app/base.html'
+    template_name = 'Main/base.html'
 
     FILTER_MAPPING = {
         'author': lambda queryset, value: queryset.filter(author__icontains=value),
@@ -82,17 +82,17 @@ class CatalogView(TemplateView):
         context = self.get_context_data(**kwargs)
         if request.headers.get('HX-Request'):
             if context.get('show_search'):
-                return TemplateResponse(request, 'main/search_input.html', context)
+                return TemplateResponse(request, 'Main/search_input.html', context)
             elif context.get('reset_search'):
-                return TemplateResponse(request, 'main/search_button.html',{})
-            template = 'main/filter_modal.html' if request.GET.get('show_filters') == 'true' else 'main/catalog.html'
+                return TemplateResponse(request, 'Main/search_button.html',{})
+            template = 'Main/filter_modal.html' if request.GET.get('show_filters') == 'true' else 'Main/catalog.html'
             return TemplateResponse(request, template, context)
         return TemplateResponse(request, self.template_name, context)
 
 #23.09
 class ProductDetailView(DetailView):
     model = Product
-    template_name = 'main/base.html'
+    template_name = 'Main/base.html'
     slug_field = 'slug'
     slug_url_kwarg = 'slug'
 
@@ -110,7 +110,7 @@ class ProductDetailView(DetailView):
         self.object = self.get_object()
         context = self.get_context_data(**kwargs)
         if request.headers.get('HX-Request'):
-            return TemplateResponse(request, 'main/product_detail_content.html', context)
+            return TemplateResponse(request, 'Main/product_detail_content.html', context)
         return TemplateResponse(request, self.template_name, context) #raise
 
 #почему в каждом классе мы используем get?
