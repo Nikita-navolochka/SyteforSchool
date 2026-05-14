@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'SETTINGS_app',
     'Main',
+    'lisiskus'
 ]
 
 MIDDLEWARE = [

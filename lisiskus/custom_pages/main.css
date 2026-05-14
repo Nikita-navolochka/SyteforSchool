@@ -1,0 +1,108 @@
+body {
+    selector {
+    background-image: url("image.jpg");
+}
+}
+.elem{
+    width: 200px;
+    height: 100px;
+    background-color: rgb(255, 255, 135);
+    color: #d16a6a;
+    padding: 10px;
+}
+p 
+{ color: rgb(255, 0, 225); } 
+a:hover { color: rgb(255, 0, 225); }
+body {
+font-family:Georgia, 'Times New Roman', Times, serif
+}
+p {
+font-size: 17px;
+}
+.bold {
+font-weight: bold;
+}
+img { border-radius: 8px; }
+li {
+font-size: 16px;
+line-height: 2;
+letter-spacing: 1px;
+}
+img {
+max-width: 100%;
+height: auto;
+}
+.navbar {
+    position:relative;
+    padding: 15px 20px;
+    background: rgb(239, 156, 212);
+    border-radius: 60px;
+    backdrop-filter: blur(15px);
+    box-shadow: 0 15px 35px rgb(255, 255, 255);
+    border: 0.5px solid #ccc;
+}
+.neon {
+    animation: neonPulse 2s infinite alternate;
+}
+h1 {
+text-align: center;
+}
+.div{
+    position: absolute;
+    top: 50%;
+    right: 50%;
+    transform: 
+    translate(-50%, -50%);
+}
+.image-container1 {
+    width: 360px;
+    height: 530px;
+    transform-style: preserve-3d;
+    transition: tranform .8c ease-in-out ;
+    cursor: pointer;
+    border: 1.2px solid #dc0e0e;
+    box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.5),
+    -5px -5px 10px rgba(0, 0, 0, 0.2);
+    border-radius: 15px;
+}
+.image-container2 {
+    width: 360px;
+    height: 530px;
+    transform-style: preserve-3d;
+    transition: tranform .8c ease-in-out ;
+    cursor: pointer;
+    border: 1.2px solid #dc0e0e;
+    box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.5),
+    -5px -5px 10px rgba(0, 0, 0, 0.2);
+    border-radius: 15px;
+}
+body {
+    cursor: url("img/курсор.jpg") , auto;
+}
+div#image-container2 {
+    display: flex ;
+    flex-direction: row;
+    justify-content: center;
+}
+.image-container3 {
+    width: 360px;
+    height: 530px;
+    transform-style: preserve-3d;
+    transition: tranform .8c ease-in-out ;
+    cursor: pointer;
+    border: 1.2px solid #dc0e0e;
+    box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.5),
+    -5px -5px 10px rgba(0, 0, 0, 0.2);
+    border-radius: 15px;
+}
+.image-container4 {
+    width: 360px;
+    height: 530px;
+    transform-style: preserve-3d;
+    transition: tranform .8c ease-in-out ;
+    cursor: pointer;
+    border: 1.2px solid #dc0e0e;
+    box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.5),
+    -5px -5px 10px rgba(0, 0, 0, 0.2);
+    border-radius: 15px;
+}

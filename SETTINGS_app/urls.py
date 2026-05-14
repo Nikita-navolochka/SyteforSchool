@@ -18,11 +18,17 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static 
+from pathlib import Path
+
+APP_DIR = Path(__file__).resolve().parent / 'lisiskus'
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('Main.urls', namespace='Main')),
+    path('lisiskus/', include('lisiskus.urls', namespace='lisiskus')), 
 ]
+
+urlpatterns += static('/lisiskus/', document_root=APP_DIR)
 
 
 if settings.DEBUG:
